@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "es2015",
+    "target": "es5",
+    "baseUrl": ".",
+    "stripInternal": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["es2015", "dom"],
+    "skipLibCheck": true
+  },
+  "files": [
+    "./src/lazyFor.module.ts"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true
+  }
+}

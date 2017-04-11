@@ -1,0 +1,26 @@
+{
+  "name": "lazy-for",
+  "version": "0.0.1",
+  "description": "Similar to ngFor but only renders items that are visible.",
+  "author": "Rob McDiarmid",
+  "license": "MIT",
+  "module": "dist/lazyFor.module.js",
+  "scripts": {
+    "build": "rimraf dist && ngc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^4.0.1",
+    "@angular/compiler-cli": "^4.0.1",
+    "@angular/core": "^4.0.1",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.41.6",
+    "rxjs": "^5.3.0",
+    "typescript": "^2.2.2",
+    "zone.js": "^0.8.5"
+  },
+  "peerDependencies": {
+    "@angular/core": "^4.0.1",
+    "rxjs": "^5.3.0",
+    "zone.js": "^0.8.5"
+  }
+}
