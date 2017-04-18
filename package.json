@@ -1,10 +1,12 @@
 {
-  "name": "lazy-for",
-  "version": "0.0.1",
+  "name": "angular-lazy-for",
+  "version": "0.0.2",
   "description": "Similar to ngFor but only renders items that are visible.",
   "author": "Rob McDiarmid",
   "license": "MIT",
   "module": "dist/lazyFor.module.js",
+  "es2015": "dist/lazyFor.module.js",
+  "typings": "dist/lazyFor.module.js",
   "scripts": {
     "build": "rimraf dist && ngc -p tsconfig.json"
   },

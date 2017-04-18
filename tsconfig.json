@@ -12,9 +12,6 @@
     "lib": ["es2015", "dom"],
     "skipLibCheck": true
   },
-  "files": [
-    "./src/lazyFor.module.ts"
-  ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true

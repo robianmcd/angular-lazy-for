@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { LazyForDirective } from './lazyFor.directive';
-export * from './lazyFor.directive';
 var LazyForModule = (function () {
     function LazyForModule() {
     }
@@ -15,3 +14,4 @@ LazyForModule.decorators = [
 ];
 /** @nocollapse */
 LazyForModule.ctorParameters = function () { return []; };
+export { LazyForDirective };

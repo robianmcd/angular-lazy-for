@@ -18,7 +18,6 @@ var LazyForDirective = (function () {
         configurable: true
     });
     LazyForDirective.prototype.ngOnInit = function () {
-        console.log('setting template elem');
         this.templateElem = this.vcr.element.nativeElement;
         if (this.containerElem === undefined) {
             this.containerElem = this.templateElem.parentElement;
@@ -46,7 +45,6 @@ var LazyForDirective = (function () {
             if (this.itemHeight === undefined) {
                 this.itemHeight = sampleItemElem.clientHeight;
             }
-            console.log(this.itemTagName);
             if (this.itemTagName === undefined) {
                 this.itemTagName = sampleItemElem.tagName;
             }
