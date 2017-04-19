@@ -1,6 +1,6 @@
 {
   "name": "angular-lazy-for",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Similar to ngFor but only renders items that are visible.",
   "author": "Rob McDiarmid",
   "license": "MIT",
