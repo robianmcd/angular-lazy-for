@@ -65,7 +65,8 @@ export class LazyForDirective implements DoCheck {
             let sampleItemElem: HTMLElement;
             if(this.itemHeight === undefined || this.itemTagName === undefined) {
                 this.vcr.createEmbeddedView(this.tpl, {
-                    $implicit: this.list[0]
+                    $implicit: this.list[0],
+                    index: 0
                 });
                 sampleItemElem = <HTMLElement>this.templateElem.nextSibling;
             }
@@ -111,7 +112,8 @@ export class LazyForDirective implements DoCheck {
 
         for(let i = listStartI; i <= listEndI; i++) {
             this.vcr.createEmbeddedView(this.tpl, {
-                $implicit: this.list[i]
+                $implicit: this.list[i],
+                index: i
             });
         }
 

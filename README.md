@@ -46,9 +46,9 @@ export class AppModule {
 ```
 
 ## When to use `lazyFor`
-* When you know the size of the iterable and you only want to create DOM elements for visible items.
-* Fix performance issues with page load time.
-* Fix change detection performance issues.
+* When you know the size of the iterable and you only want to create DOM elements for visible items
+* Fix performance issues with page load time
+* Fix change detection performance issues
 
 ## When *not* to use `lazyFor`
 * Not meant to replace `ngFor` in all cases. Only use `lazyFor` if you have performance issues

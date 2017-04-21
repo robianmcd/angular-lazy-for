@@ -1,6 +1,6 @@
 {
   "name": "angular-lazy-for",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Similar to ngFor but only renders items that are visible.",
   "author": "Rob McDiarmid",
   "license": "MIT",
@@ -9,6 +9,10 @@
   "typings": "dist/lazyFor.module.js",
   "scripts": {
     "build": "rimraf dist && ngc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robianmcd/angular-lazy-for.git"
   },
   "devDependencies": {
     "@angular/compiler": "^4.0.1",

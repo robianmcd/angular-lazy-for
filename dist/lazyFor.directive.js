@@ -38,7 +38,8 @@ var LazyForDirective = (function () {
             var sampleItemElem = void 0;
             if (this.itemHeight === undefined || this.itemTagName === undefined) {
                 this.vcr.createEmbeddedView(this.tpl, {
-                    $implicit: this.list[0]
+                    $implicit: this.list[0],
+                    index: 0
                 });
                 sampleItemElem = this.templateElem.nextSibling;
             }
@@ -71,7 +72,8 @@ var LazyForDirective = (function () {
         listEndI = this.limitToRange(listEndI, -1, this.list.length - 1);
         for (var i = listStartI; i <= listEndI; i++) {
             this.vcr.createEmbeddedView(this.tpl, {
-                $implicit: this.list[i]
+                $implicit: this.list[i],
+                index: i
             });
         }
         this.beforeListElem.style.height = listStartI * this.itemHeight + "px";
