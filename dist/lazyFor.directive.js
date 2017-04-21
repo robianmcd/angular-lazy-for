@@ -21,10 +21,9 @@ var LazyForDirective = (function () {
         this.templateElem = this.vcr.element.nativeElement;
         if (this.containerElem === undefined) {
             this.containerElem = this.templateElem.parentElement;
-            if (this.containerElem.tagName === 'THEAD' || this.containerElem.tagName === 'TBODY') {
-                this.containerElem = this.containerElem.parentElement;
-            }
         }
+        //Adding an event listener will trigger ngDoCheck whenever the event fires so we don't actually need to call
+        //update here.
         this.containerElem.addEventListener('scroll', function (e) {
             //this.update();
         });
@@ -34,6 +33,10 @@ var LazyForDirective = (function () {
         this.update();
     };
     LazyForDirective.prototype.update = function () {
+        if (!this.list || !this.list.length) {
+            this.vcr.clear();
+            return;
+        }
         if (this.firstUpdate) {
             var sampleItemElem = void 0;
             if (this.itemHeight === undefined || this.itemTagName === undefined) {
@@ -50,10 +53,10 @@ var LazyForDirective = (function () {
                 this.itemTagName = sampleItemElem.tagName;
             }
             this.beforeListElem = document.createElement(this.itemTagName);
-            this.containerElem.insertBefore(this.beforeListElem, this.templateElem);
+            this.templateElem.parentElement.insertBefore(this.beforeListElem, this.templateElem);
             this.afterListElem = document.createElement(this.itemTagName);
             //This inserts after the templateElem. see http://stackoverflow.com/a/4793630/373655 for details
-            this.containerElem.insertBefore(this.afterListElem, this.templateElem.nextSibling);
+            this.templateElem.parentElement.insertBefore(this.afterListElem, this.templateElem.nextSibling);
             if (this.itemTagName.toLowerCase() === 'li') {
                 this.beforeListElem.style.listStyleType = 'none';
                 this.afterListElem.style.listStyleType = 'none';
@@ -63,7 +66,8 @@ var LazyForDirective = (function () {
         var listHeight = this.containerElem.clientHeight;
         var scrollTop = this.containerElem.scrollTop;
         //The height of anything inside the container but above the lazyFor content;
-        var fixedHeaderHeight = this.beforeListElem.offsetTop - this.containerElem.offsetTop;
+        var fixedHeaderHeight = (this.beforeListElem.getBoundingClientRect().top - this.beforeListElem.scrollTop) -
+            (this.containerElem.getBoundingClientRect().top - this.containerElem.scrollTop);
         //This needs to run after the scrollTop is retrieved.
         this.vcr.clear();
         var listStartI = Math.floor((scrollTop - fixedHeaderHeight) / this.itemHeight);

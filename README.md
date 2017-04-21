@@ -70,7 +70,7 @@ This directive will try to figure out the height of each element and use that nu
 ```
 
 ### inContainer
-`lazyFor` needs to know which element is the scrollable container the items will be inside of. By default it will use the parent element but if this is not the right element you can explicitly specify the container. Note: there is a special case for tables. If you put `lazyFor` on an element inside a `<thead>` or `<tbody>` it will use the parent of the <`thead`>/<`tbody`> as the container by default.
+`lazyFor` needs to know which element is the scrollable container the items will be inside of. By default it will use the parent element but if this is not the right element you can explicitly specify the container.
 
 ```HTML
 <div style="overflow: auto" #myContainer>
