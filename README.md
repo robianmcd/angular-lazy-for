@@ -3,7 +3,7 @@
 `lazyFor` is an Angular 2+ directive that can be used in place of `ngFor`. The main difference is that `lazyFor` will only render items when they are visible in the parent element. So as a user scrolls, items that are no longer visible will be removed from the DOM and new items will be rendered to the DOM.
 
 ## Sample Usage
-#### [Plunker Demo](https://embed.plnkr.co/t9OKzEOObBClzI6MX6uo/?show=app.component.ts,preview)
+### [Plunker Demo](https://embed.plnkr.co/t9OKzEOObBClzI6MX6uo/?show=app.component.ts,preview)
 
 Install with `npm install --save angular-lazy-for`
 
@@ -58,7 +58,7 @@ export class AppModule {
 
 ## Performance
 `lazyFor` can improve performance by preventing unnecessary content from being rendered to the DOM. This also leads to fewer bindings which reduces the load on change detection. Using `ngFor` is usually very fast but here is a casae where it has a noticeable performance impact:
-#### [Plunker Performance Demo](https://embed.plnkr.co/eRMjnhW1ctU1VwdRhE8x/?show=app.component.ts,preview)
+### [Plunker Performance Demo](https://embed.plnkr.co/eRMjnhW1ctU1VwdRhE8x/?show=app.component.ts,preview)
 
 ## Optional Parameters
 
