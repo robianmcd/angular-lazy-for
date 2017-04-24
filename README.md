@@ -58,6 +58,7 @@ export class AppModule {
 
 ## Performance
 `lazyFor` can improve performance by preventing unnecessary content from being rendered to the DOM. This also leads to fewer bindings which reduces the load on change detection. Using `ngFor` is usually very fast but here is a casae where it has a noticeable performance impact:
+
 ### [Plunker Performance Demo](https://embed.plnkr.co/eRMjnhW1ctU1VwdRhE8x/?show=app.component.ts,preview)
 
 ## Optional Parameters
