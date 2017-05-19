@@ -15,6 +15,7 @@ export declare class LazyForDirective implements DoCheck {
     private firstUpdate;
     private differ;
     private lastChangeTriggeredByScroll;
+    private viewRefCache;
     constructor(vcr: ViewContainerRef, tpl: TemplateRef<any>, iterableDiffers: IterableDiffers);
     ngOnInit(): void;
     ngDoCheck(): void;

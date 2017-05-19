@@ -1,5 +1,7 @@
 # Change Log
 
+## [1.1.4] - 2017-04-24
+
 ## 1.1.3 - 2017-04-24
 - Added check to only regenerate DOM elements if items in the list have changed or a scroll event has fired. This greatly improves performance in some cases.
 - Added this change log
@@ -21,3 +23,5 @@
 ## 1.0.0 - 2017-04-19
 - Initial release
 - Added all the things
+
+[1.1.4]: https://github.com/robianmcd/angular-lazy-for/compare/v1.1.3...v1.1.4

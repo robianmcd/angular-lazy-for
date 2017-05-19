@@ -36,6 +36,7 @@ export class LazyForDirective implements DoCheck {
     private differ: IterableDiffer<any>;
 
     private lastChangeTriggeredByScroll = false;
+    private viewRefCache = [];
 
     constructor(
         private vcr: ViewContainerRef,
@@ -100,7 +101,15 @@ export class LazyForDirective implements DoCheck {
             (this.containerElem.getBoundingClientRect().top - this.containerElem.scrollTop);
 
         //This needs to run after the scrollTop is retrieved.
-        this.vcr.clear();
+        //If the list changed then get rid of the viewRefCache
+        if(!this.lastChangeTriggeredByScroll) {
+            this.vcr.clear();
+            this.viewRefCache = [];
+        } else {
+            for (let i = this.vcr.length-1; i <= 0; i--) {
+                this.vcr.detach(i);
+            }
+        }
 
         let listStartI = Math.floor((scrollTop - fixedHeaderHeight) / this.itemHeight);
         listStartI = this.limitToRange(listStartI, 0, this.list.length);
@@ -109,10 +118,14 @@ export class LazyForDirective implements DoCheck {
         listEndI = this.limitToRange(listEndI, -1, this.list.length - 1);
 
         for (let i = listStartI; i <= listEndI; i++) {
-            this.vcr.createEmbeddedView(this.tpl, {
-                $implicit: this.list[i],
-                index: i
-            });
+            if(this.viewRefCache[i]) {
+                this.vcr.insert(this.viewRefCache[i]);
+            } else {
+                this.viewRefCache[i] = this.vcr.createEmbeddedView(this.tpl, {
+                    $implicit: this.list[i],
+                    index: i
+                });
+            }
         }
 
         this.beforeListElem.style.height = `${listStartI * this.itemHeight}px`;

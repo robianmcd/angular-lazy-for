@@ -8,6 +8,7 @@ var LazyForDirective = (function () {
         this.initialized = false;
         this.firstUpdate = true;
         this.lastChangeTriggeredByScroll = false;
+        this.viewRefCache = [];
     }
     Object.defineProperty(LazyForDirective.prototype, "lazyForOf", {
         set: function (list) {
@@ -66,16 +67,30 @@ var LazyForDirective = (function () {
         var fixedHeaderHeight = (this.beforeListElem.getBoundingClientRect().top - this.beforeListElem.scrollTop) -
             (this.containerElem.getBoundingClientRect().top - this.containerElem.scrollTop);
         //This needs to run after the scrollTop is retrieved.
-        this.vcr.clear();
+        //If the list changed then get rid of the viewRefCache
+        if (!this.lastChangeTriggeredByScroll) {
+            this.vcr.clear();
+            this.viewRefCache = [];
+        }
+        else {
+            for (var i = this.vcr.length - 1; i <= 0; i--) {
+                this.vcr.detach(i);
+            }
+        }
         var listStartI = Math.floor((scrollTop - fixedHeaderHeight) / this.itemHeight);
         listStartI = this.limitToRange(listStartI, 0, this.list.length);
         var listEndI = Math.ceil((scrollTop - fixedHeaderHeight + listHeight) / this.itemHeight);
         listEndI = this.limitToRange(listEndI, -1, this.list.length - 1);
         for (var i = listStartI; i <= listEndI; i++) {
-            this.vcr.createEmbeddedView(this.tpl, {
-                $implicit: this.list[i],
-                index: i
-            });
+            if (this.viewRefCache[i]) {
+                this.vcr.insert(this.viewRefCache[i]);
+            }
+            else {
+                this.viewRefCache[i] = this.vcr.createEmbeddedView(this.tpl, {
+                    $implicit: this.list[i],
+                    index: i
+                });
+            }
         }
         this.beforeListElem.style.height = listStartI * this.itemHeight + "px";
         this.afterListElem.style.height = (this.list.length - listEndI - 1) * this.itemHeight + "px";
