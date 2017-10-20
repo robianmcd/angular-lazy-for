@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.1.4 - 2017-10-20
+- Fixed issue with clearing large list of items
+
 ## 1.1.3 - 2017-04-24
 - Added check to only regenerate DOM elements if items in the list have changed or a scroll event has fired. This greatly improves performance in some cases.
 - Added this change log
