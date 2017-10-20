@@ -1,5 +1,5 @@
 import { Input, Directive, ViewContainerRef, TemplateRef, IterableDiffers } from '@angular/core';
-var LazyForDirective = (function () {
+var LazyForDirective = /** @class */ (function () {
     function LazyForDirective(vcr, tpl, iterableDiffers) {
         this.vcr = vcr;
         this.tpl = tpl;
@@ -55,6 +55,8 @@ var LazyForDirective = (function () {
         //Can't run the first update unless there is an element in the list
         if (this.list.length === 0) {
             this.vcr.clear();
+            this.beforeListElem.style.height = "0";
+            this.afterListElem.style.height = "0";
             return;
         }
         if (this.firstUpdate) {
@@ -109,23 +111,23 @@ var LazyForDirective = (function () {
     LazyForDirective.prototype.limitToRange = function (num, min, max) {
         return Math.max(Math.min(num, max), min);
     };
+    LazyForDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[lazyFor]'
+                },] },
+    ];
+    /** @nocollapse */
+    LazyForDirective.ctorParameters = function () { return [
+        { type: ViewContainerRef, },
+        { type: TemplateRef, },
+        { type: IterableDiffers, },
+    ]; };
+    LazyForDirective.propDecorators = {
+        'itemHeight': [{ type: Input, args: ['lazyForWithHeight',] },],
+        'containerElem': [{ type: Input, args: ['lazyForInContainer',] },],
+        'itemTagName': [{ type: Input, args: ['lazyForWithTagName',] },],
+        'lazyForOf': [{ type: Input },],
+    };
     return LazyForDirective;
 }());
 export { LazyForDirective };
-LazyForDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[lazyFor]'
-            },] },
-];
-/** @nocollapse */
-LazyForDirective.ctorParameters = function () { return [
-    { type: ViewContainerRef, },
-    { type: TemplateRef, },
-    { type: IterableDiffers, },
-]; };
-LazyForDirective.propDecorators = {
-    'itemHeight': [{ type: Input, args: ['lazyForWithHeight',] },],
-    'containerElem': [{ type: Input, args: ['lazyForInContainer',] },],
-    'itemTagName': [{ type: Input, args: ['lazyForWithTagName',] },],
-    'lazyForOf': [{ type: Input },],
-};
