@@ -84,8 +84,10 @@ export class LazyForDirective implements DoCheck {
         //Can't run the first update unless there is an element in the list
         if (this.list.length === 0) {
             this.vcr.clear();
-            this.beforeListElem.style.height = "0";
-            this.afterListElem.style.height = "0";
+            if(!this.firstUpdate) {
+                this.beforeListElem.style.height = "0";
+                this.afterListElem.style.height = "0";
+            }
             return;
         }
 
