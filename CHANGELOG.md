@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.1.5 - 2017-10-31
+- Fixed issue that would occur if the list started out being empty
+
 ## 1.1.4 - 2017-10-20
 - Fixed issue with clearing large list of items
 
